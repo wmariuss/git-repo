@@ -62,12 +62,15 @@ class RepoSync(RepoBase):
             ":" +
             "refs/heads/" + branch,
             force=force,
-            tags=True
+            tags=False
         )
         # Check for errors
         if push_infos:
             for push_info in push_infos:
                 if push_info.flags & push_info.ERROR:
+                    if push_info.summary == '[remote rejected] (no new changes)\n':
+                        logging.info("SKIPPING: '{0}'".format(push_info.summary))
+                        return True, ''
                     err_msg = ("Push failed for project '{0}': "
                                "{1}".format(self.repo_name, push_info.summary))
                     logging.error(err_msg)
