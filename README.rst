@@ -1,8 +1,11 @@
-# gitrepo
+=======
+gitrepo
+=======
 
 Git tool for sync multiple repositories and branches.
 
-## Usage
+Usage
+-----
 
 **gitrepo [--version] [-v | -q] [--log-file LOG_FILE] [-h] [--debug]**
 
@@ -21,7 +24,8 @@ Commands:
   :help:           print detailed help for another command
   :sync:           Sync the projects.
 
-## `gitrepo sync` example
+`gitrepo sync` example
+----------------------
 
 **gitrepo sync [-h] [-f] [-p PROJECT [PROJECT ...]] [-t NUM_THREADS] [--junit-xml [XML_FILE]] file**
 
@@ -46,6 +50,7 @@ optional arguments:
    --junit-xml          Create sync report in JUnit XML format (can be used in Jenkins)
 
 
-# Contributors
+Contributors
+------------
 
 * [Marius Stanca](mailto:me@marius.xyz)
