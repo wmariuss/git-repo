@@ -1,12 +1,8 @@
-=======
-gitrepo
-=======
+# gitrepo
 
-gitrepo provides a CLI tool and a Python API wrapper for interacting with git repositories
+Git tool for sync multiple repositories and branches.
 
-
-Usage
------
+## Usage
 
 **gitrepo [--version] [-v | -q] [--log-file LOG_FILE] [-h] [--debug]**
 
@@ -25,8 +21,7 @@ Commands:
   :help:           print detailed help for another command
   :sync:           Sync the projects.
 
-'gitrepo sync' example
-----------------------
+## `gitrepo sync` example
 
 **gitrepo sync [-h] [-f] [-p PROJECT [PROJECT ...]] [-t NUM_THREADS] [--junit-xml [XML_FILE]] file**
 
@@ -51,15 +46,6 @@ optional arguments:
    --junit-xml          Create sync report in JUnit XML format (can be used in Jenkins)
 
 
-ToDo
-----
-* add additional commands;
-* add ability to customise connection parameters;
-* add more unit tests;
+# Contributors
 
-
-Contributors
-------------
-
-* skulanov@mirantis.com
-* vitaliy@kulanov.org.ua
+* [Marius Stanca](mailto:me@marius.xyz)
