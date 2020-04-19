@@ -24,8 +24,8 @@ Commands:
   :help:           print detailed help for another command
   :sync:           Sync the projects.
 
-`gitrepo sync` example
-----------------------
+gitrepo sync example
+--------------------
 
 **gitrepo sync [-h] [-f] [-p PROJECT [PROJECT ...]] [-t NUM_THREADS] [--junit-xml [XML_FILE]] file**
 
@@ -53,4 +53,4 @@ optional arguments:
 Contributors
 ------------
 
-* [Marius Stanca](mailto:me@marius.xyz)
+* me@marius.xyz
