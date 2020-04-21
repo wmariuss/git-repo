@@ -29,9 +29,7 @@ class ValidationError(GitRepoException):
 
 class FileIsEmpty(ValidationError):
     def __init__(self, file_path):
-        super(FileIsEmpty, self).__init__(
-            "File '{0}' is empty".format(file_path)
-        )
+        super(FileIsEmpty, self).__init__("File '{0}' is empty".format(file_path))
 
 
 class FileDoesNotExist(ValidationError):

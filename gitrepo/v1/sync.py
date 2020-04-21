@@ -31,28 +31,27 @@ from gitrepo.v1 import base
 class GitSyncClient(base.GitBaseClient):
     """Provides high-level API to sync projects."""
 
-    keys = ('project', 'src-repo', 'dst-repo', 'branches')
+    keys = ("project", "src-repo", "dst-repo", "branches")
 
     @property
     def cache_dir(self):
-        return os.path.join(os.getenv("HOME", "/home/jenkins"),
-                            "gitrepo-sync-cache")
+        return os.path.join(os.getenv("HOME", "/home/jenkins"), "gitrepo-sync-cache")
 
     def sync(self, data, projects=None, force=False, num_threads=1):
         """Sync specified projects from data. Supports multiple worker threads
 
         If projects is None then all projects from data will be synced.
-         :param data: List of data description of projects
-         :type data: list
-         :param projects: List of string names of projects
-         :type projects: list
-         :param force: Forces update remote repository without any checks
-         :type force: bool
-         :param num_threads: Number of worker threads
-         :type num_threads: int
-         :return: list of sync results
-         :rtype: list
-         """
+        :param data: List of data description of projects
+        :type data: list
+        :param projects: List of string names of projects
+        :type projects: list
+        :param force: Forces update remote repository without any checks
+        :type force: bool
+        :param num_threads: Number of worker threads
+        :type num_threads: int
+        :return: list of sync results
+        :rtype: list
+        """
 
         if projects is not None:
             projects = self.filter_projects(data, projects)
@@ -99,23 +98,22 @@ class GitSyncClient(base.GitBaseClient):
     def filter_projects(data, projects):
         """Get specified projects from data.
 
-         :param data: List of data description of projects
-         :type data: list
-         :param projects: List of all projects from data
-         :type projects: list
-         :return: List of specified projects from data
-         :rtype: list
-         """
+        :param data: List of data description of projects
+        :type data: list
+        :param projects: List of all projects from data
+        :type projects: list
+        :return: List of specified projects from data
+        :rtype: list
+        """
 
         filtered_projects = []
         for project in projects:
             for item_data in data:
-                if project == item_data['project']:
+                if project == item_data["project"]:
                     filtered_projects.append(item_data)
                     break
             else:
-                log_msg = ("Input data for project '{}' "
-                           "was not found ".format(project))
+                log_msg = "Input data for project '{}' " "was not found ".format(project)
                 logging.error(log_msg)
 
         if not filtered_projects:

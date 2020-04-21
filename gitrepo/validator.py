@@ -24,17 +24,11 @@ from gitrepo import utils
 
 
 def validate_schema(data, schema, file_path, value_path=None):
-    logging.debug(
-        "Start schema validation for {0} file, {1}".format(
-            file_path,
-            schema
-        )
-    )
+    logging.debug("Start schema validation for {0} file, {1}".format(file_path, schema))
     try:
         jsonschema.validate(data, schema)
     except jsonschema.exceptions.ValidationError as exc:
-        raise error.ValidationError(
-            _make_error_message(exc, file_path, value_path))
+        raise error.ValidationError(_make_error_message(exc, file_path, value_path))
 
 
 def validate_file_by_schema(schema, file_path):
@@ -58,7 +52,8 @@ def _make_error_message(exc, file_path, value_path):
 
     if exc.context:
         sub_exceptions = sorted(
-            exc.context, key=lambda e: len(e.schema_path), reverse=True)
+            exc.context, key=lambda e: len(e.schema_path), reverse=True
+        )
         sub_message = sub_exceptions[0]
         value_path.extend(list(sub_message.absolute_path)[2:])
         message = sub_message.message
@@ -68,8 +63,7 @@ def _make_error_message(exc, file_path, value_path):
     error_msg = "File '{0}', {1}".format(file_path, message)
 
     if value_path:
-        value_path = ' -> '.join(map(six.text_type, value_path))
-        error_msg = '{0}, {1}'.format(
-            error_msg, "value path '{0}'".format(value_path))
+        value_path = " -> ".join(map(six.text_type, value_path))
+        error_msg = "{0}, {1}".format(error_msg, "value path '{0}'".format(value_path))
 
     return error_msg

@@ -17,6 +17,4 @@
 
 from gitrepo.schemas.projects_schema import PROJECTS_SCHEMA
 
-__all__ = [
-    "PROJECTS_SCHEMA"
-]
+__all__ = ["PROJECTS_SCHEMA"]

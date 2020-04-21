@@ -22,7 +22,6 @@ from gitrepo.objects import RepoBase
 
 
 class RepoSync(RepoBase):
-
     def __init__(self, src_url, repo_path, repo_name):
         super(RepoSync, self).__init__(repo_path, repo_name)
         try:
@@ -58,21 +57,20 @@ class RepoSync(RepoBase):
         """
 
         push_infos = self.repo.remote(dst_name).push(
-            "refs/remotes/origin/" + branch +
-            ":" +
-            "refs/heads/" + branch,
+            "refs/remotes/origin/" + branch + ":" + "refs/heads/" + branch,
             force=force,
-            tags=False
+            tags=False,
         )
         # Check for errors
         if push_infos:
             for push_info in push_infos:
                 if push_info.flags & push_info.ERROR:
-                    if push_info.summary == '[remote rejected] (no new changes)\n':
+                    if push_info.summary == "[remote rejected] (no new changes)\n":
                         logging.info("SKIPPING: '{0}'".format(push_info.summary))
-                        return True, ''
-                    err_msg = ("Push failed for project '{0}': "
-                               "{1}".format(self.repo_name, push_info.summary))
+                        return True, ""
+                    err_msg = "Push failed for project '{0}': " "{1}".format(
+                        self.repo_name, push_info.summary
+                    )
                     logging.error(err_msg)
                     return False, err_msg
         else:
@@ -80,4 +78,4 @@ class RepoSync(RepoBase):
             logging.error(err_msg)
             return False, err_msg
         # if push was successful then error message is empty
-        return True, ''
+        return True, ""

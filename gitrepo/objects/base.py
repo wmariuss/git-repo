@@ -18,7 +18,6 @@ import os
 
 
 class RepoBase(object):
-
     def __init__(self, repo_path, repo_name):
         self._repo_path = repo_path
         self._repo_name = repo_name

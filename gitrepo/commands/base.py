@@ -21,7 +21,7 @@ import six
 
 import gitrepo
 
-VERSION = 'v1'
+VERSION = "v1"
 
 
 @six.add_metaclass(abc.ABCMeta)

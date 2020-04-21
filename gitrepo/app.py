@@ -32,22 +32,25 @@ class Application(app.App):
     def configure_logging(self):
         # Redefine cliff's default logging message format by adding threadName
         # tag to identify logs from multiple threads
-        self.CONSOLE_MESSAGE_FORMAT = ('[%(threadName)s] : '
-                                       '%(levelname)-8s '
-                                       '%(message)s')
-        self.LOG_FILE_MESSAGE_FORMAT = ('[%(threadName)s] '
-                                        '[%(asctime)s] '
-                                        '%(levelname)-8s '
-                                        '%(name)s '
-                                        '%(message)s')
+        self.CONSOLE_MESSAGE_FORMAT = (
+            "[%(threadName)s] : " "%(levelname)-8s " "%(message)s"
+        )
+        self.LOG_FILE_MESSAGE_FORMAT = (
+            "[%(threadName)s] "
+            "[%(asctime)s] "
+            "%(levelname)-8s "
+            "%(name)s "
+            "%(message)s"
+        )
         super(Application, self).configure_logging()
 
         # Enables debugging of GitPython's git commands
         # depending on verbosity level
-        git.cmd.Git.GIT_PYTHON_TRACE = {0: False,  # '-q'
-                                        1: True,   # default level
-                                        2: 'full'  # '-v'
-                                        }.get(self.options.verbose_level, True)
+        git.cmd.Git.GIT_PYTHON_TRACE = {
+            0: False,  # '-q'
+            1: True,  # default level
+            2: "full",  # '-v'
+        }.get(self.options.verbose_level, True)
 
 
 def main(argv=None):
@@ -55,7 +58,7 @@ def main(argv=None):
         description="The utility for work with git repositories.",
         version=gitrepo.__version__,
         command_manager=CommandManager("gitrepo", convert_underscores=True),
-        deferred_help=True
+        deferred_help=True,
     ).run(argv)
 
 
@@ -72,5 +75,5 @@ def debug(name, cmd_class, argv=None):
     return Application(
         description="The utility for work with git repositories.",
         version=gitrepo.__version__,
-        command_manager=cmd_mgr
+        command_manager=cmd_mgr,
     ).run(argv)

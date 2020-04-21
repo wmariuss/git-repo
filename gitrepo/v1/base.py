@@ -20,7 +20,6 @@ import six
 
 @six.add_metaclass(abc.ABCMeta)
 class GitBaseClient(object):
-
     @abc.abstractproperty
     def cache_dir(self):
         """Directory to store local repositories."""

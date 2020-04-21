@@ -21,12 +21,12 @@ from gitrepo import v1
 __all__ = ["v1", "__version__"]
 
 try:
-    __version__ = pbr.version.VersionInfo('gitrepo').version_string()
+    __version__ = pbr.version.VersionInfo("gitrepo").version_string()
 except Exception:
     __version__ = "0.0.0"
 
 
-def get_client(resource, version='v1'):
+def get_client(resource, version="v1"):
     """Gets an API client for a resource
 
     gitrepo provides access to Gitrepo's API
@@ -46,11 +46,7 @@ def get_client(resource, version='v1'):
     """
     from gitrepo import v1
 
-    version_map = {
-        'v1': {
-            'sync': v1.sync
-        }
-    }
+    version_map = {"v1": {"sync": v1.sync}}
 
     try:
         return version_map[version][resource].get_client()

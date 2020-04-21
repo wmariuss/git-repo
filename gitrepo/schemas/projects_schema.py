@@ -20,27 +20,11 @@ PROJECTS_SCHEMA = {
     "items": {
         "type": "object",
         "properties": {
-            "branches": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                }
-            },
-            "dst-repo": {
-                "type": "string"
-            },
-            "project": {
-                "type": "string"
-            },
-            "src-repo": {
-                "type": "string"
-            }
+            "branches": {"type": "array", "items": {"type": "string"}},
+            "dst-repo": {"type": "string"},
+            "project": {"type": "string"},
+            "src-repo": {"type": "string"},
         },
-        "required": [
-            "branches",
-            "dst-repo",
-            "project",
-            "src-repo"
-        ]
-    }
+        "required": ["branches", "dst-repo", "project", "src-repo"],
+    },
 }

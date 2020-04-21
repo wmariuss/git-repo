@@ -19,7 +19,7 @@ import mock
 from gitrepo.tests.unit.cli import clibase
 
 
-PROJECTS_YAML = '''
+PROJECTS_YAML = """
 - project: project_1
   src-repo: https://src/path/to/repo_1
   dst-repo: ssh://dst@127.0.0.1:9999/path/to/repo_1
@@ -30,26 +30,24 @@ PROJECTS_YAML = '''
   dst-repo: ssh://dst@127.0.0.1:9999/path/to/repo_2
   branches:
    - master
-'''
+"""
 
 
 class TestSyncCommand(clibase.BaseCLITest):
-
-    @mock.patch('gitrepo.utils.file_exists', return_value=True)
+    @mock.patch("gitrepo.utils.file_exists", return_value=True)
     def test_sync(self, _):
-        expected_path = '/tmp/fake_projects.yaml'
-        args = 'sync {file_path} -p project_1'.format(file_path=expected_path)
+        expected_path = "/tmp/fake_projects.yaml"
+        args = "sync {file_path} -p project_1".format(file_path=expected_path)
 
         m_open = mock.mock_open(read_data=PROJECTS_YAML)
-        with mock.patch('gitrepo.utils.open', m_open, create=True):
+        with mock.patch("gitrepo.utils.open", m_open, create=True):
             self.exec_command(args)
 
         m_open.assert_called_once_with(expected_path)
-        self.m_get_client.assert_called_once_with('sync', mock.ANY)
+        self.m_get_client.assert_called_once_with("sync", mock.ANY)
 
-    @mock.patch('sys.stderr')
+    @mock.patch("sys.stderr")
     def test_sync_fail(self, mocked_stderr):
-        args = 'sync'
+        args = "sync"
         self.assertRaises(SystemExit, self.exec_command, args)
-        self.assertIn('error',
-                      mocked_stderr.write.call_args_list[-1][0][0])
+        self.assertIn("error", mocked_stderr.write.call_args_list[-1][0][0])

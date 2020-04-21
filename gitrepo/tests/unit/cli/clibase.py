@@ -29,7 +29,7 @@ class BaseCLITest(oslo_base.BaseTestCase):
     def setUp(self):
         super(BaseCLITest, self).setUp()
 
-        self._get_client_patcher = mock.patch.object(gitrepo, 'get_client')
+        self._get_client_patcher = mock.patch.object(gitrepo, "get_client")
         self.m_get_client = self._get_client_patcher.start()
 
         self.m_client = mock.MagicMock()
@@ -37,11 +37,11 @@ class BaseCLITest(oslo_base.BaseTestCase):
         self.addCleanup(self._get_client_patcher.stop)
 
     @staticmethod
-    def exec_command(command=''):
+    def exec_command(command=""):
         """Executes gitrepo with the specified arguments."""
 
         argv = shlex.split(command)
-        if '--debug' not in argv:
-            argv = argv + ['--debug']
+        if "--debug" not in argv:
+            argv = argv + ["--debug"]
 
         return main_mod.main(argv=argv)
